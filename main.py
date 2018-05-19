@@ -105,3 +105,49 @@ else:
 
     busqueda_box(query_desc,q_meta, descriptores,meta_data)
 
+
+
+# Pipeline pre proceso (images -- binarias)
+# Hoja son nubes de puntos??
+# Almacenar database de nubes de puntos de hojas
+
+"""
+
+
+Como implementar proposal:
+Idea 0: Usar YOLO con dataset de simbolos latex generado
+    - Tomar una lista de simbolos latex validos (http://web.ift.uib.no/Teori/KURS/WRK/TeX/symALL.html + numeros + letras)
+    - Supongamos imagenes de 200x200 binarias 
+    - Tomo sea N datos cada imagen se genera con K simbolos aleatorio (varian) en posiciones aleatorias
+    - Se usa svg del simbolo latex pasar a mascara binaria pegar en cordenada
+    - Realizar ciertas tranformaciones warp (estirar de lados, escalar global)
+    - Iterar hasta generar dataset completo (imagen_generada, [bounding_box,label]  )
+    - Espero tener un dataset de 100.000 imagenes binarias con 50 clases de simbolos
+    
+    - Entrenar red convolucional con YOLO
+    
+    - Evaluar desempeno
+    - Evaluar dado hojas mas grandes mas pequenas
+    -
+
+
+Programa:
+
+1. Preproceso(image) -> out_bin Dado imagen png a nube de puntos imagen binaria. (imagen binaria)
+
+2. Proposal(bin_image) -> { (x,y) : [('simbol',score)] }  Desde nubee de puntos genera ventanas proposal con su class score (simbolos)
+
+3. (jupyter) Programa de prueba muestra N ventanas proposal. 
+    - for ventanas in proposal:
+        - show all in subplot input(valid or none)
+        - replace with latex simbol at cords in result image
+
+4. Mostrar Proposal(crop_image(image,x,y,dx,dy)) Para sugerir corte.
+
+5. Exportar por lineas a documento latex?
+
+
+"""
+
+
+
